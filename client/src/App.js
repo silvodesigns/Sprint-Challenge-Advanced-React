@@ -17,9 +17,22 @@ class App extends React.Component{
 
   render(){
 
+    const { players } = this.state;
+
     return (
       <div className="App">
-        <h1>Players</h1>
+        <h1 className="title">Players</h1>
+        <ul className="player-card">
+          {players.map( p => 
+          <li key={p.id}>
+          
+          <p>NAME: {p.name}</p>
+          <p>COUNTRY: {p.country}</p>
+          <p>SEARCHES: {p.searches}</p>
+          
+          </li>
+          )}
+        </ul>
        
       </div>
     );
