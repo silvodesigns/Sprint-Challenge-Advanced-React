@@ -1,52 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 
 function App(props){
 
+  const [players, setPlayers] = useState([]);
 
-  
-}
+  useEffect(()=>{
+    fetchData();
+  })
 
-class App extends React.Component{
-  constructor(){
-    super();
-    this.state = {
-      players: []
-    }
-  }
-
-  componentDidMount(){
+  const fetchData = () => {
     fetch('http://localhost:5000/api/players')
     .then( response => response.json())
-    .then(data => this.setState({players: data}))
+    .then(data => setPlayers(data))
   }
 
-  render(){
 
-    const { players } = this.state;
+  return (
+    <div className="App">
+      <h1 className="title">Players</h1>
+      <ul className="player-card">
+          {players.map( p => 
+          <li key={p.id}>
+      
+              <p  className="player-name">NAME: {p.name}</p>
+              <p  className="player-country">COUNTRY: {p.country}</p>
+              <p  className="player-search">SEARCHES: {p.searches}</p>
+          
+          </li>
+          )}
+      </ul>
+     
+    </div>
+  );
 
 
-
-    return (
-      <div className="App">
-        <h1 className="title">Players</h1>
-        <ul className="player-card">
-            {players.map( p => 
-            <li key={p.id}>
-            
-            <p  className="player-name">NAME: {p.name}</p>
-            <p  className="player-country">COUNTRY: {p.country}</p>
-            <p  className="player-search">SEARCHES: {p.searches}</p>
-            
-            </li>
-            )}
-        </ul>
-       
-      </div>
-    );
-  }
-
+  
 }
 
 export default App;
