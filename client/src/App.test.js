@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import '@testing-library/jest-dom/extend-expect';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+
+it('the app element has been rendered', () => {
+  const wrapper = render(
+    <App/>
+  )
+  console.log(wrapper.debug())
 });
