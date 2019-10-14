@@ -1,21 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import  useFetch from './useFetch.js'
 
 
 function App(props){
 
-  const [players, setPlayers] = useState([]);
-
-  useEffect(()=>{
-    fetchData();
-  })
-
-  const fetchData = () => {
-    fetch('http://localhost:5000/api/players')
-    .then( response => response.json())
-    .then(data => setPlayers(data))
-  }
-
+  const players = useFetch('http://localhost:5000/api/players');
 
   return (
     <div className="App">
